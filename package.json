@@ -6,7 +6,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "name": "misans",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "MiSans (subsetted) fonts from Xiaomi for free commercial use.",
   "keywords": [
     "misans",
@@ -17,8 +17,8 @@
   "author": "DSRKafuU <dsrkafuu@outlook.com> (https://dsrkafuu.net/)",
   "homepage": "https://github.com/dsrkafuu/misans#readme",
   "license": "Apache-2.0",
-  "main": "./lib/index.js",
-  "style": "./lib/index.css",
+  "main": "./index.js",
+  "style": "./index.css",
   "repository": "github:dsrkafuu/misans",
   "files": [
     "lib",
