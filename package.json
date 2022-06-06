@@ -1,5 +1,37 @@
 {
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "name": "misans",
-  "version": "2.0.0",
-  "description": "MiSans fonts from Xiaomi for free commercial use."
+  "version": "3.0.0",
+  "description": "MiSans (subsetted) fonts from Xiaomi for free commercial use.",
+  "keywords": [
+    "misans",
+    "font",
+    "webfont",
+    "woff2"
+  ],
+  "author": "DSRKafuU <dsrkafuu@outlook.com> (https://dsrkafuu.net/)",
+  "homepage": "https://github.com/dsrkafuu/misans#readme",
+  "license": "Apache-2.0",
+  "main": "./lib/index.js",
+  "style": "./lib/index.css",
+  "repository": "github:dsrkafuu/ffxiv-overlay-api",
+  "files": [
+    "lib",
+    "raw/*.json",
+    "index.css",
+    "index.js"
+  ],
+  "scripts": {
+    "fetch": "node ./scripts/fetch.js",
+    "subset": "node ./scripts/subset.js"
+  },
+  "devDependencies": {
+    "fs-extra": "~10.1.0",
+    "glob": "~8.0.3"
+  }
 }
