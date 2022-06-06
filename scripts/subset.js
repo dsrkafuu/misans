@@ -222,16 +222,6 @@ async function createSubsets(file) {
     css.trim(),
     'utf-8'
   );
-  const cssWithoutCustom = css
-    .trim()
-    .split('\n')
-    .filter((line) => !line.includes('/*[-'))
-    .join('\n');
-  fse.writeFileSync(
-    path.resolve(targetFolder, `${baseName}.slim.min.css`),
-    cssWithoutCustom,
-    'utf-8'
-  );
   console.log(`Done for ${Object.keys(rangesOfThisFile).length} subsets`);
 }
 
