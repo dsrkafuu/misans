@@ -5,8 +5,46 @@ const fse = require('fs-extra');
 const glob = require('glob');
 const childProcess = require('child_process');
 
+const config = fse.readJSONSync(path.resolve(__dirname, '../config.json'));
 // output of `fetch.js` script
 const ranges = fse.readJSONSync(path.resolve(__dirname, '../raw/ranges.json'));
+
+/**
+ * get all supported unicodes of a font file
+ * @returns {Promise<Set<string>>}
+ */
+async function getSupportedUnicodeSet(file) {
+  // get cmap ttx with fonttools
+  const ttxFile = file.replace(/\.ttf$/, '.ttx');
+  childProcess.execSync(`fonttools ttx -t cmap -o ${ttxFile} ${file}`);
+  const cmap = fse.readFileSync(ttxFile, 'utf-8');
+
+  // match unicodes
+  const unicodeSet = new Set();
+  const exp = /<map +code="([^"]+)"/gi;
+  let expr = exp.exec(cmap);
+  while (expr && expr[1]) {
+    const str = expr[1];
+    const unicode = str.toLowerCase().replace(/^0x/, 'U+');
+    unicodeSet.add(unicode);
+    expr = exp.exec(cmap);
+  }
+
+  // remove ttx file
+  fse.unlinkSync(ttxFile);
+  return unicodeSet;
+}
+
+/**
+ * get hash of a font file
+ * @param {string} file
+ * @returns {string}
+ */
+function getHash(file) {
+  const hasher = crypto.createHash('sha1');
+  hasher.update(fse.readFileSync(file));
+  return hasher.digest('hex');
+}
 
 /**
  * unicode (hex) to number
@@ -47,40 +85,34 @@ function mergeUnicodes(unicodes) {
 }
 
 /**
- * get all supported unicodes of a font file
- * @returns {Promise<Set<string>>}
+ * @param {Set<string>} set
  */
-async function getSupportedUnicodeSet(file) {
-  // get cmap ttx with fonttools
-  const ttxFile = file.replace(/\.ttf$/, '.ttx');
-  childProcess.execSync(`fonttools ttx -t cmap -o ${ttxFile} ${file}`);
-  const cmap = fse.readFileSync(ttxFile, 'utf-8');
-
-  // match unicodes
-  const unicodeSet = new Set();
-  const exp = /<map +code="([^"]+)"/gi;
-  let expr = exp.exec(cmap);
-  while (expr && expr[1]) {
-    const str = expr[1];
-    const unicode = str.toLowerCase().replace(/^0x/, 'U+');
-    unicodeSet.add(unicode);
-    expr = exp.exec(cmap);
+async function sliceUnprocessedUnicodes(set) {
+  if (set.size === 0) {
+    return {};
   }
-
-  // remove ttx file
-  fse.unlinkSync(ttxFile);
-  return unicodeSet;
-}
-
-/**
- * get hash of a font file
- * @param {string} file
- * @returns {string}
- */
-function getHash(file) {
-  const hasher = crypto.createHash('sha1');
-  hasher.update(fse.readFileSync(file));
-  return hasher.digest('hex');
+  const arr = Array.from(set).sort((a, b) => u2n(a) - u2n(b));
+  // 200 char per slice
+  const slices = {};
+  let idx = 1;
+  slices[`[-${idx}]`] = [];
+  for (const u of arr) {
+    if (slices[`[-${idx}]`].length >= 200) {
+      idx++;
+      slices[`[-${idx}]`] = [];
+    } else {
+      slices[`[-${idx}]`].push(u);
+    }
+  }
+  // if last slice is to small
+  if (slices[`[-${idx}]`].length < 100) {
+    slices[`[-${idx - 1}]`] = [
+      ...slices[`[-${idx - 1}]`],
+      ...slices[`[-${idx}]`],
+    ];
+    delete slices[`[-${idx}]`];
+  }
+  return slices;
 }
 
 let empty = false;
@@ -131,6 +163,23 @@ async function createSubsets(file) {
     { spaces: 2 }
   );
 
+  // dont need extend slices
+  if (!config.extendSlices) {
+    unProcessedUnicodeSet.clear();
+  }
+  // has custom unicodes
+  if (config.customUnicodes && config.customUnicodes.length > 0) {
+    config.customUnicodes.forEach((unicode) => {
+      unProcessedUnicodeSet.add(unicode);
+    });
+  }
+  const customSlices = await sliceUnprocessedUnicodes(unProcessedUnicodeSet);
+  fse.writeJSONSync(
+    path.resolve(__dirname, '../raw/ranges-custom.json'),
+    customSlices,
+    { spaces: 2 }
+  );
+
   const hash = getHash(file).substring(0, 8);
   const outFile = file.replace(/\.ttf$/, `.subset.ttf`);
   const baseName = path.basename(file, '.ttf');
@@ -145,25 +194,42 @@ async function createSubsets(file) {
 
   // create subsets
   console.log(`Creating subsets for "${file}"...`);
-  Object.entries(rangesOfThisFile).forEach(([key, unicodes]) => {
-    const _unicodes = unicodes.join(',');
-    childProcess.execSync(`fonttools subset --unicodes="${_unicodes}" ${file}`);
-    // move subset to the output directory
-    const index = /\[([0-9]+)\]/i.exec(key)[1];
-    const targetFile = path.resolve(targetFolder, `${hash}.${index}.ttf`);
-    fse.moveSync(outFile, targetFile);
-    childProcess.execSync(`fonttools ttLib.woff2 compress ${targetFile}`);
-    fse.unlinkSync(targetFile);
-    css +=
-      `/*${key}*/` +
-      `@font-face{font-family:MiSans;font-style:normal;` +
-      `font-weight:${fontWeight};font-display:swap;` +
-      `src: url('${hash}.${index}.woff2') format('woff2');` +
-      `unicode-range:${mergeUnicodes(unicodes)};}\n`;
-  });
+  Object.entries({ ...rangesOfThisFile, ...customSlices }).forEach(
+    ([key, unicodes]) => {
+      const _unicodes = unicodes.join(',');
+      childProcess.execSync(
+        `fonttools subset --unicodes="${_unicodes}" ${file}`
+      );
+      // move subset to the output directory
+      const index = /\[(-?[0-9]+)\]/i.exec(key)[1];
+      const targetFile = path.resolve(
+        targetFolder,
+        `${baseName}.${hash}.${index}.ttf`
+      );
+      fse.moveSync(outFile, targetFile);
+      childProcess.execSync(`fonttools ttLib.woff2 compress ${targetFile}`);
+      fse.unlinkSync(targetFile);
+      css +=
+        `/*${key}*/` +
+        `@font-face{font-family:MiSans;font-style:normal;` +
+        `font-weight:${fontWeight};font-display:swap;` +
+        `src: url('${baseName}.${hash}.${index}.woff2') format('woff2');` +
+        `unicode-range:${mergeUnicodes(unicodes)};}\n`;
+    }
+  );
   fse.writeFileSync(
     path.resolve(targetFolder, `${baseName}.min.css`),
     css.trim(),
+    'utf-8'
+  );
+  const cssWithoutCustom = css
+    .trim()
+    .split('\n')
+    .filter((line) => !line.includes('/*[-'))
+    .join('\n');
+  fse.writeFileSync(
+    path.resolve(targetFolder, `${baseName}.slim.min.css`),
+    cssWithoutCustom,
     'utf-8'
   );
   console.log(`Done for ${Object.keys(rangesOfThisFile).length} subsets`);

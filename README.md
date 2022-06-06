@@ -15,6 +15,10 @@ Version: `2.000`
 
 ## Subset Details
 
+Checkout `config.json` for settings.
+
+使用 `config.json` 修改设置。
+
 Environment requirements:
 
 环境需求：
