@@ -6,7 +6,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "name": "misans",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "MiSans (subsetted) fonts from Xiaomi for free commercial use.",
   "keywords": [
     "misans",
@@ -19,7 +19,7 @@
   "license": "Apache-2.0",
   "main": "./lib/index.js",
   "style": "./lib/index.css",
-  "repository": "github:dsrkafuu/ffxiv-overlay-api",
+  "repository": "github:dsrkafuu/misans",
   "files": [
     "lib",
     "raw/*.json",
