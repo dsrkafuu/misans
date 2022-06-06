@@ -8,6 +8,8 @@ MiSans (subsetted) fonts from Xiaomi for free (web) use.
 
 Version: `2.000`
 
+[有关本字体的博客文章](https://blog.dsrkafuu.net/post/2022/google-fonts-subsetting/)
+
 ## CDN
 
 - https://unpkg.com/misans/
