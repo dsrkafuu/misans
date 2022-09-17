@@ -15,6 +15,15 @@ Version: `2.000`
 - https://unpkg.com/misans/
 - https://www.jsdelivr.com/package/npm/misans
 
+## Usage
+
+```html
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/misans@3.1.1/lib/misans-400-regular.min.css"
+/>
+```
+
 ## Subset Details
 
 Checkout `config.json` for settings.
