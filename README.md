@@ -6,7 +6,7 @@ MiSans (subsetted) fonts from Xiaomi for free (web) use.
 
 ![Fonts Preview](https://raw.githubusercontent.com/dsrkafuu/misans/main/preview.png)
 
-Version: `2.000`
+Version: `4.003`
 
 [有关本字体的博客文章](https://blog.dsrkafuu.net/post/2022/google-fonts-subsetting/)
 
@@ -17,12 +17,22 @@ Version: `2.000`
 
 ## Usage
 
+- Normal version is subsetted with Noto Sans SC
+- TC version is subsetted with Noto Sans TC
+- Other versions are not subsetted
+
+### Normal
+
 ```html
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/misans@3.1.1/lib/misans-400-regular.min.css"
 />
 ```
+
+### TC
+
+###
 
 ## Subset Details
 

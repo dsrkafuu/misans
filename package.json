@@ -3,7 +3,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "name": "misans",
-  "version": "3.1.1",
+  "version": "4.0.0",
   "description": "MiSans (subsetted) fonts from Xiaomi for free commercial use.",
   "keywords": [
     "misans",
@@ -23,9 +23,7 @@
     "lib",
     "raw/*.json",
     "index.css",
-    "index.js",
-    "index.slim.css",
-    "index.slim.js"
+    "index.js"
   ],
   "scripts": {
     "fetch": "node ./scripts/fetch.js",
