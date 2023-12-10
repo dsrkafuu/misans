@@ -27,7 +27,8 @@
   ],
   "scripts": {
     "fetch": "node ./scripts/fetch.js",
-    "subset": "node ./scripts/subset.js"
+    "subset": "node ./scripts/subset.js",
+    "generate": "node ./scripts/generate.js"
   },
   "devDependencies": {
     "fs-extra": "~10.1.0",

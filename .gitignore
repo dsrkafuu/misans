@@ -1,5 +1,6 @@
 raw/full/
 raw/subset/
+raw/subset_tc/
 
 package-lock.json
 pnpm-lock.yaml
