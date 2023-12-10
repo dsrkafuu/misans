@@ -1,5 +1,8 @@
 # MiSans
 
+[![NPM](https://img.shields.io/npm/v/misans)](https://www.npmjs.com/package/misans)
+[![jsDelivr](https://img.shields.io/jsdelivr/npm/hm/misans)](https://www.jsdelivr.com/package/npm/misans)
+
 MiSans (subsetted) fonts from Xiaomi for free (web) use.
 
 小米发布的 MiSans 字体，可以免费使用，同步 Google Fonts 进行子集化以供 web 使用。
