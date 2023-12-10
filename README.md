@@ -25,16 +25,54 @@ Version: `4.003`
 - TC 版本使用 TTF 字体 & Noto Sans TC 进行子集化
 - 其他版本未进行子集化，使用 WOFF2 来源字体
 
+The following examples include only the Normal and Latin versions. For other versions, please refer to the examples and make them yourself.
+
+以下的例子只包含了普通版本和 Latin 版本，其他版本请参照示例自行引入。
+
 ### Normal
 
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/misans@3.1.1/lib/misans-400-regular.min.css"
+  crossorigin="anonymous"
+  href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Medium.min.css"
+/>
+<link
+  rel="stylesheet"
+  crossorigin="anonymous"
+  href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Bold.min.css"
+/>
+```
+
+### Latin
+
+```html
+<link
+  rel="stylesheet"
+  crossorigin="anonymous"
+  href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Latin/MiSansLatin-Medium.min.css"
+/>
+<link
+  rel="stylesheet"
+  crossorigin="anonymous"
+  href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Latin/MiSansLatin-Bold.min.css"
 />
 ```
 
 ### TC
+
+```html
+<link
+  rel="stylesheet"
+  crossorigin="anonymous"
+  href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Latin/MiSansTC-Medium.min.css"
+/>
+<link
+  rel="stylesheet"
+  crossorigin="anonymous"
+  href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Latin/MiSansTC-Bold.min.css"
+/>
+```
 
 ###
 
