@@ -21,9 +21,7 @@
   "repository": "github:dsrkafuu/misans",
   "files": [
     "lib",
-    "raw/*.json",
-    "index.css",
-    "index.js"
+    "raw/*.json"
   ],
   "scripts": {
     "fetch": "node ./scripts/fetch.js",
