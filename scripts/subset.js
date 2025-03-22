@@ -1,9 +1,9 @@
 /*! DSRKafuU (https://dsrkafuu.net) | Copyright (c) Apache License 2.0 */
-const path = require('path');
-const crypto = require('crypto');
-const fse = require('fs-extra');
-const glob = require('glob');
-const childProcess = require('child_process');
+import path from 'path';
+import crypto from 'crypto';
+import fse from 'fs-extra';
+import * as glob from 'glob';
+import childProcess from 'child_process';
 
 const config = fse.readJSONSync(path.resolve(__dirname, '../config.json'));
 // output of `fetch.js` script
@@ -219,7 +219,7 @@ async function createSubsets(file, mode = 'normal') {
     const _unicodes = unicodes.join(',');
     childProcess.execSync(`fonttools subset --unicodes="${_unicodes}" ${file}`);
     // move subset to the output directory
-    const index = /\[(-?[0-9]+)\]/i.exec(key)[1];
+    const index = /\[(-?[0-9]+|[\w-]+)\]/i.exec(key)[1];
     const targetFile = path.resolve(targetFolder, `${baseName}.${index}.ttf`);
     fse.moveSync(outFile, targetFile);
     childProcess.execSync(`fonttools ttLib.woff2 compress ${targetFile}`);

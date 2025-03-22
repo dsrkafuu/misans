@@ -1,8 +1,8 @@
 /*! DSRKafuU (https://dsrkafuu.net) | Copyright (c) Apache License 2.0 */
-const path = require('path');
-const fse = require('fs-extra');
-const glob = require('glob');
-const childProcess = require('child_process');
+import path from 'path';
+import fse from 'fs-extra';
+import * as glob from 'glob';
+import childProcess from 'child_process';
 
 /**
  * create css for a font file
