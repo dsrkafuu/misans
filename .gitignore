@@ -1,6 +1,7 @@
 raw/full/
 raw/subset/
 raw/subset_tc/
+venv/
 
 package-lock.json
 pnpm-lock.yaml

@@ -40,13 +40,17 @@ async function getCSS_TC() {
  */
 function getUnicodeRanges(css) {
   css = css.replace(/\n/g, '');
-  const idExp = /(\[[0-9]+\])/gi;
+  const idExp = /\/\* +(\[[0-9]+\]|[\w-]+) +\*\//gi;
   const rangeExp = /unicode-range: ([^;]+);/gi;
   let idExpr = idExp.exec(css);
   let rangeExpr = rangeExp.exec(css);
   const res = {};
   while (idExpr && rangeExpr && idExpr[1] && rangeExpr[1]) {
-    res[idExpr[1]] = rangeExpr[1].replace(/ /g, '');
+    let idEntry = idExpr[1];
+    if (!idEntry.startsWith('[')) {
+      idEntry = `[${idEntry}]`;
+    }
+    res[idEntry] = rangeExpr[1].replace(/ /g, '');
     idExpr = idExp.exec(css);
     rangeExpr = rangeExp.exec(css);
   }
