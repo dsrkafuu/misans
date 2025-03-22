@@ -27,10 +27,12 @@
   "scripts": {
     "fetch": "bun ./scripts/fetch.js",
     "subset": "bun ./scripts/subset.js",
-    "generate": "bun ./scripts/generate.js"
+    "generate": "bun ./scripts/generate.js",
+    "serve": "serve ./"
   },
   "devDependencies": {
     "fs-extra": "~11.3.0",
-    "glob": "~11.0.1"
+    "glob": "~11.0.1",
+    "serve": "^14.2.4"
   }
 }

@@ -158,24 +158,10 @@ async function createSubsets(file, mode = 'normal') {
   });
 
   // write the result to json
-  fse.writeJSONSync(
-    path.resolve(
-      __dirname,
-      mode === 'tc' ? '../raw/ranges-supported_tc.json' : '../raw/ranges-supported.json'
-    ),
-    rangesOfThisFile,
-    {
-      spaces: 2,
-    }
-  );
-  fse.writeJSONSync(
-    path.resolve(
-      __dirname,
-      mode === 'tc' ? '../raw/ranges-unprocessed_tc.json' : '../raw/ranges-unprocessed.json'
-    ),
-    Array.from(unProcessedUnicodeSet),
-    { spaces: 2 }
-  );
+  fse.writeJSONSync(path.resolve(__dirname, mode === 'tc' ? '../raw/ranges-supported_tc.json' : '../raw/ranges-supported.json'), rangesOfThisFile, {
+    spaces: 2,
+  });
+  fse.writeJSONSync(path.resolve(__dirname, mode === 'tc' ? '../raw/ranges-unprocessed_tc.json' : '../raw/ranges-unprocessed.json'), Array.from(unProcessedUnicodeSet), { spaces: 2 });
 
   // dont need extend slices
   if (!config.extendSlices) {
@@ -188,23 +174,13 @@ async function createSubsets(file, mode = 'normal') {
     });
   }
   const customSlices = await sliceUnprocessedUnicodes(unProcessedUnicodeSet);
-  fse.writeJSONSync(
-    path.resolve(
-      __dirname,
-      mode === 'tc' ? '../raw/ranges-custom_tc.json' : '../raw/ranges-custom.json'
-    ),
-    customSlices,
-    {
-      spaces: 2,
-    }
-  );
+  fse.writeJSONSync(path.resolve(__dirname, mode === 'tc' ? '../raw/ranges-custom_tc.json' : '../raw/ranges-custom.json'), customSlices, {
+    spaces: 2,
+  });
 
   const outFile = file.replace(/\.ttf$/, `.subset.ttf`);
   const baseName = path.basename(file, '.ttf');
-  const targetFolder = path.resolve(
-    __dirname,
-    mode === 'tc' ? '../raw/subset_tc' : '../raw/subset'
-  );
+  const targetFolder = path.resolve(__dirname, mode === 'tc' ? '../raw/subset_tc' : '../raw/subset');
   // const fontWeight = baseName.split('-')[1];
   let css = '';
   fse.ensureDirSync(targetFolder);
@@ -224,28 +200,19 @@ async function createSubsets(file, mode = 'normal') {
     fse.moveSync(outFile, targetFile);
     childProcess.execSync(`fonttools ttLib.woff2 compress ${targetFile}`);
     fse.unlinkSync(targetFile);
-    css +=
-      `/*${key}*/` +
-      `@font-face{font-family:${mode === 'tc' ? 'MiSansTC' : 'MiSans'};font-style:normal;` +
-      `font-weight:${weightClass};font-display:swap;` +
-      `src: url('${baseName}.${index}.woff2') format('woff2');` +
-      `unicode-range:${mergeUnicodes(unicodes)};}\n`;
+    css += `/*${key}*/` + `@font-face{font-family:${mode === 'tc' ? 'MiSansTC' : 'MiSans'};font-style:normal;` + `font-weight:${weightClass};font-display:swap;` + `src: url('${baseName}.${index}.woff2') format('woff2');` + `unicode-range:${mergeUnicodes(unicodes)};}\n`;
   });
   fse.writeFileSync(path.resolve(targetFolder, `${baseName}.min.css`), css.trim(), 'utf-8');
   console.log(`Done for ${Object.keys(rangesOfThisFile).length} subsets`);
 }
 
 async function main() {
-  const files = glob
-    .sync('raw/Normal/ttf/*.ttf')
-    .map((file) => path.resolve(__dirname, '../', file));
+  const files = glob.sync('raw/Normal/ttf/*.ttf').map((file) => path.resolve(__dirname, '../', file));
   for (const file of files) {
     await createSubsets(file, 'normal');
   }
 
-  const files_tc = glob
-    .sync('raw/TC/ttf/*.ttf')
-    .map((file_tc) => path.resolve(__dirname, '../', file_tc));
+  const files_tc = glob.sync('raw/TC/ttf/*.ttf').map((file_tc) => path.resolve(__dirname, '../', file_tc));
   for (const file_tc of files_tc) {
     await createSubsets(file_tc, 'tc');
   }

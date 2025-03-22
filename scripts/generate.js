@@ -24,10 +24,7 @@ async function generateCSS(file) {
   const expr = exp.exec(ttxMeta);
   const weightClass = +expr[1] || 0;
 
-  const css =
-    `@font-face{font-family:${fontFamily};font-style:normal;` +
-    `font-weight:${weightClass};font-display:swap;` +
-    `src: url('${baseName}.woff2') format('woff2');}`;
+  const css = `@font-face{font-family:${fontFamily};font-style:normal;` + `font-weight:${weightClass};font-display:swap;` + `src: url('${baseName}.woff2') format('woff2');}`;
   fse.writeFileSync(outFile, css.trim(), 'utf-8');
 
   fse.unlinkSync(ttxFile);

@@ -7,6 +7,8 @@ MiSans (subsetted) fonts from Xiaomi for free (web) use.
 
 小米发布的 MiSans 字体，可以免费使用，同步 Google Fonts 进行子集化以供 web 使用。
 
+Online Demo: [GitHub Pages](https://github.dsrkafuu.net/misans/)
+
 ![Fonts Preview](https://raw.githubusercontent.com/dsrkafuu/misans/main/preview.png)
 
 Version: `4.003`
@@ -35,46 +37,19 @@ The following examples include only the Normal and Latin versions. For other ver
 ### Normal
 
 ```html
-<link
-  rel="stylesheet"
-  crossorigin="anonymous"
-  href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Medium.min.css"
-/>
-<link
-  rel="stylesheet"
-  crossorigin="anonymous"
-  href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Bold.min.css"
-/>
-```
-
-### Latin
-
-```html
-<link
-  rel="stylesheet"
-  crossorigin="anonymous"
-  href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Latin/MiSansLatin-Medium.min.css"
-/>
-<link
-  rel="stylesheet"
-  crossorigin="anonymous"
-  href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Latin/MiSansLatin-Bold.min.css"
-/>
+<link rel="stylesheet" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Medium.min.css" /> <link rel="stylesheet" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Normal/MiSans-Bold.min.css" />
 ```
 
 ### TC
 
 ```html
-<link
-  rel="stylesheet"
-  crossorigin="anonymous"
-  href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Latin/MiSansTC-Medium.min.css"
-/>
-<link
-  rel="stylesheet"
-  crossorigin="anonymous"
-  href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Latin/MiSansTC-Bold.min.css"
-/>
+<link rel="stylesheet" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Latin/MiSansTC-Medium.min.css" /> <link rel="stylesheet" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Latin/MiSansTC-Bold.min.css" />
+```
+
+### Latin
+
+```html
+<link rel="stylesheet" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Latin/MiSansLatin-Medium.min.css" /> <link rel="stylesheet" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/misans@4.0.0/lib/Latin/MiSansLatin-Bold.min.css" />
 ```
 
 ###
@@ -90,15 +65,19 @@ Environment requirements:
 环境需求：
 
 - Node.js >= 18
+- Bun >= 1.2
 - Python >= 3.7
 
-```bash
+```ps1
 git clone https://github.com/dsrkafuu/misans.git
 cd misans
+python -m venv venv
+.\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-npm install
-npm run fetch
-npm run subset
+bun install
+bun run fetch
+bun run subset
+bun run serve
 ```
 
 Subsetting process:
@@ -121,7 +100,7 @@ Subsetting process:
 
 ## Fonts Source
 
-- https://hyperos.mi.com/font/download
+- https://hyperos.mi.com/font/zh/
 
 ## Reference
 
@@ -131,11 +110,11 @@ Subsetting process:
 
 ## Copyright (Fonts)
 
-Copyright (c), Beijing Xiaomi Mobile Software Co., Ltd.
+[《MiSans 字体知识产权许可协议》](https://hyperos.mi.com/font-download/MiSans%E5%AD%97%E4%BD%93%E7%9F%A5%E8%AF%86%E4%BA%A7%E6%9D%83%E8%AE%B8%E5%8F%AF%E5%8D%8F%E8%AE%AE.pdf)
 
-> 本《MiSans 字体知识产权许可协议》（以下简称“协议”）是您与小米科技有限责任公司（以下简称“小米”或“许可方”）之间有关安装、使> 用 MiSans 字体（以下简称“MiSans”或“MiSans 字体”）的法律协议。您在使用 MiSans 的所有或任何部分前，应接受本协议中规定的> 所有条款和条件。安装、使用 MiSans 的行为表示您同意接受本协议所有条款的约束。否则，请不要安装或使用 MiSans，并应立即销毁和> 删除所有 MiSans 字体包。
+> 本《MiSans 字体知识产权许可协议》（以下简称“协议”）是您与小米科技有限责任公司（以下简称“小米”或“许可方”）之间有关安装、使用 MiSans 字体（以下简称“MiSans”或“MiSans 字体”）的法律协议。您在使用 MiSans 的所有或任何部分前，应接受本协议中规定的所有条款和条件。安装、使用 MiSans 的行为表示您同意接受本协议所有条款的约束。否则，请不要安装或使用 MiSans，并应立即销毁和删除所有 MiSans 字体包。
 >
-> 根据本协议的条款和条件，许可方在此授予您一份不可转让的、非独占的、免版税的、可撤销的、全球性的版权许可，使您依照本协议约定使> 用 MiSans 字体，前提是符合下列条件：
+> 根据本协议的条款和条件，许可方在此授予您一份不可转让的、非独占的、免版税的、可撤销的、全球性的版权许可，使您依照本协议约定使用 MiSans 字体，前提是符合下列条件：
 >
 > - 您应在软件中特别注明使用了 MiSans 字体。
 > - 您不得对 MiSans 字体或其任何单独组件进行改编或二次开发。
