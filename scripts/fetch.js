@@ -1,6 +1,6 @@
 /*! DSRKafuU (https://dsrkafuu.net) | Copyright (c) Apache License 2.0 */
-const path = require('path');
-const fse = require('fs-extra');
+import path from 'path';
+import fse from 'fs-extra';
 
 const url = 'https://fonts.googleapis.com/css2?family=Noto+Sans+SC';
 const url_tc = 'https://fonts.googleapis.com/css2?family=Noto+Sans+TC';

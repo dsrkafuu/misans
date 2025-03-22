@@ -2,8 +2,9 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
+  "type": "module",
   "name": "misans",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "MiSans (subsetted) fonts from Xiaomi for free commercial use.",
   "keywords": [
     "misans",
@@ -11,7 +12,7 @@
     "webfont",
     "woff2"
   ],
-  "author": "DSRKafuU <dsrkafuu@outlook.com> (https://dsrkafuu.net/)",
+  "author": "DSRKafuU (https://dsrkafuu.net/)",
   "homepage": "https://github.com/dsrkafuu/misans#readme",
   "license": "Apache-2.0",
   "main": "./lib/Latin/MiSansLatin-Medium.min.css",
@@ -24,12 +25,12 @@
     "raw/*.json"
   ],
   "scripts": {
-    "fetch": "node ./scripts/fetch.js",
-    "subset": "node ./scripts/subset.js",
-    "generate": "node ./scripts/generate.js"
+    "fetch": "bun ./scripts/fetch.js",
+    "subset": "bun ./scripts/subset.js",
+    "generate": "bun ./scripts/generate.js"
   },
   "devDependencies": {
-    "fs-extra": "~10.1.0",
-    "glob": "~8.0.3"
+    "fs-extra": "~11.3.0",
+    "glob": "~11.0.1"
   }
 }
