@@ -23,6 +23,7 @@ pids
 node_modules/
 .env
 .env.*
+temp-plan.md
 
 Thumbs.db
 ehthumbs.db

@@ -1,29 +1,29 @@
 {
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  },
-  "type": "module",
   "name": "misans",
-  "version": "4.1.0",
+  "version": "5.0.0",
   "description": "MiSans (subsetted) fonts from Xiaomi for free commercial use.",
   "keywords": [
-    "misans",
     "font",
+    "misans",
     "webfont",
     "woff2"
   ],
-  "author": "DSRKafuU (https://dsrkafuu.net/)",
   "homepage": "https://github.com/dsrkafuu/misans#readme",
   "license": "Apache-2.0",
-  "main": "./lib/Latin/MiSansLatin-Medium.min.css",
-  "style": "./lib/Latin/MiSansLatin-Medium.min.css",
-  "unpkg": "./lib/Latin/MiSansLatin-Medium.min.css",
-  "jsdelivr": "./lib/Latin/MiSansLatin-Medium.min.css",
+  "author": "DSRKafuU (https://dsrkafuu.net/)",
   "repository": "github:dsrkafuu/misans",
+  "style": "./lib/Latin/MiSansLatin-Medium.min.css",
   "files": [
     "lib",
     "raw/*.json"
   ],
+  "type": "module",
+  "main": "./lib/Latin/MiSansLatin-Medium.min.css",
+  "unpkg": "./lib/Latin/MiSansLatin-Medium.min.css",
+  "jsdelivr": "./lib/Latin/MiSansLatin-Medium.min.css",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "fetch": "bun ./scripts/fetch.js",
     "subset": "bun ./scripts/subset.js",
@@ -31,8 +31,9 @@
     "serve": "serve ./"
   },
   "devDependencies": {
-    "fs-extra": "~11.3.0",
-    "glob": "~11.0.1",
-    "serve": "^14.2.4"
+    "fs-extra": "^11.4.0",
+    "glob": "^13.0.6",
+    "oxfmt": "^0.68.0",
+    "serve": "^14.2.6"
   }
 }
