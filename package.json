@@ -26,14 +26,14 @@
   },
   "scripts": {
     "fetch": "bun ./scripts/fetch.js",
-    "subset": "bun ./scripts/subset.js",
-    "generate": "bun ./scripts/generate.js",
-    "serve": "serve ./"
+    "build": "bun ./scripts/build.js",
+    "check": "bun ./scripts/check.js",
+    "serve": "bun ./scripts/serve.js"
   },
   "devDependencies": {
-    "fs-extra": "^11.4.0",
-    "glob": "^13.0.6",
+    "fontkit": "^2.0.4",
     "oxfmt": "^0.68.0",
-    "serve": "^14.2.6"
+    "subset-font": "^2.7.0",
+    "wawoff2": "^2.0.1"
   }
 }
