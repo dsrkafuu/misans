@@ -12,15 +12,15 @@
   "license": "Apache-2.0",
   "author": "DSRKafuU (https://dsrkafuu.net/)",
   "repository": "github:dsrkafuu/misans",
-  "style": "./lib/Latin/MiSansLatin-Medium.min.css",
+  "style": "./lib/Normal/MiSansVF.min.css",
   "files": [
     "lib",
     "raw/*.json"
   ],
   "type": "module",
-  "main": "./lib/Latin/MiSansLatin-Medium.min.css",
-  "unpkg": "./lib/Latin/MiSansLatin-Medium.min.css",
-  "jsdelivr": "./lib/Latin/MiSansLatin-Medium.min.css",
+  "main": "./lib/Normal/MiSansVF.min.css",
+  "unpkg": "./lib/Normal/MiSansVF.min.css",
+  "jsdelivr": "./lib/Normal/MiSansVF.min.css",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
