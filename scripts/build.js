@@ -1,5 +1,6 @@
-import fs from 'fs';
 /*! DSRKafuU (https://dsrkafuu.net) | Copyright (c) Apache License 2.0 */
+
+import fs from 'fs';
 import path from 'path';
 
 import {

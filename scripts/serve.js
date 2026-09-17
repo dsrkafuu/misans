@@ -1,5 +1,6 @@
-import fs from 'fs';
 /*! DSRKafuU (https://dsrkafuu.net) | Copyright (c) Apache License 2.0 */
+
+import fs from 'fs';
 import path from 'path';
 
 import { ROOT } from './util.js';
@@ -29,21 +30,32 @@ Bun.serve({
       return new Response('Bad Request', { status: 400 });
     }
     if (pathname === '/') {
-      pathname = '/docs/index.html';
+      pathname = '/demo.html';
     }
     const file = path.normalize(path.join(ROOT, pathname));
     if (!file.startsWith(ROOT + path.sep) && file !== ROOT) {
       return new Response('Forbidden', { status: 403 });
     }
+    if (fs.existsSync(file) && fs.statSync(file).isDirectory()) {
+      const index = path.join(file, 'index.html');
+      if (fs.existsSync(index)) {
+        return sendFile(index);
+      }
+      return new Response('Not Found', { status: 404 });
+    }
     if (!fs.existsSync(file) || !fs.statSync(file).isFile()) {
       return new Response('Not Found', { status: 404 });
     }
-    return new Response(fs.readFileSync(file), {
-      headers: {
-        'content-type': MIME[path.extname(file).toLowerCase()] || 'application/octet-stream',
-      },
-    });
+    return sendFile(file);
   },
 });
+
+function sendFile(file) {
+  return new Response(fs.readFileSync(file), {
+    headers: {
+      'content-type': MIME[path.extname(file).toLowerCase()] || 'application/octet-stream',
+    },
+  });
+}
 
 console.log(`Serving ${ROOT} at http://localhost:${PORT}/`);

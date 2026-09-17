@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-17T19:01:40.242Z",
+  "fetchedAt": "2026-09-17T19:56:53.987Z",
   "canonical": {
     "source": "font.sec.miui.com",
     "weight": 400,
@@ -7,7 +7,16 @@
   },
   "crossSource": null,
   "verification": {
-    "weightsChecked": [200, 300, 400, 450, 500, 600, 650, 700],
+    "weightsChecked": [
+      200,
+      300,
+      400,
+      450,
+      500,
+      600,
+      650,
+      700
+    ],
     "weightsIdentical": true,
     "sourceDiff": 0
   },

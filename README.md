@@ -110,8 +110,15 @@ bun install
 bun run fetch
 bun run build
 bun run check
+bun run docs
 bun run serve
 ```
+
+- `demo.html` is the demo source linking fonts locally for `bun run serve` debugging
+- `bun run docs` generates the minified `docs/index.html` (fonts via jsDelivr) for GitHub Pages
+
+- `demo.html` 是 demo 源码，指向本地字体，配合 `bun run serve` 调试
+- `bun run docs` 生成压缩后的 `docs/index.html`（字体走 jsDelivr），用于 GitHub Pages 部署
 
 The unicode ranges come from the official Xiaomi font service. Every `fetch` re-verifies both sources and fails loudly on any drift:
 

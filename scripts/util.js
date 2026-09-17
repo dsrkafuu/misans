@@ -1,6 +1,7 @@
+/*! DSRKafuU (https://dsrkafuu.net) | Copyright (c) Apache License 2.0 */
+
 import crypto from 'crypto';
 import fs from 'fs';
-/*! DSRKafuU (https://dsrkafuu.net) | Copyright (c) Apache License 2.0 */
 import path from 'path';
 
 import * as fontkit from 'fontkit';

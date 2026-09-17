@@ -1,0 +1,1100 @@
+<!doctype html>
+<html lang="zh" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="MiSans Global 是由小米主导，联合蒙纳字库、汉仪字库共同打造的全球语言字体定制项目。本仓库基于小米官方切片范围将其子集化为网页字体，输出仅含 WOFF2，提供 12 个语种家族、10 档静态字重与可变字体。"
+    />
+    <meta
+      name="keywords"
+      content="MiSans, MiSans Subsetted, MiSans Global, 小米字体, 网页字体, web 字体, 可变字体, variable font, WOFF2, 字体子集化, font subsetting, 免费商用字体"
+    />
+    <meta name="author" content="DSRKafuU" />
+    <title>MiSans Subsetted</title>
+    <link rel="stylesheet" href="lib/Normal/MiSansVF.min.css" />
+    <link rel="stylesheet" href="lib/Normal/MiSans-Thin.min.css" />
+    <link rel="stylesheet" href="lib/Normal/MiSans-ExtraLight.min.css" />
+    <link rel="stylesheet" href="lib/Normal/MiSans-Light.min.css" />
+    <link rel="stylesheet" href="lib/Normal/MiSans-Normal.min.css" />
+    <link rel="stylesheet" href="lib/Normal/MiSans-Regular.min.css" />
+    <link rel="stylesheet" href="lib/Normal/MiSans-Medium.min.css" />
+    <link rel="stylesheet" href="lib/Normal/MiSans-Demibold.min.css" />
+    <link rel="stylesheet" href="lib/Normal/MiSans-Semibold.min.css" />
+    <link rel="stylesheet" href="lib/Normal/MiSans-Bold.min.css" />
+    <link rel="stylesheet" href="lib/Normal/MiSans-Heavy.min.css" />
+    <link rel="stylesheet" href="lib/TC/MiSansTC-Regular.min.css" />
+    <link rel="stylesheet" href="lib/Latin/MiSansLatin-Regular.min.css" />
+    <link rel="stylesheet" href="lib/ArabicUI/MiSansArabicUI-Regular.min.css" />
+    <link rel="stylesheet" href="lib/Arabic/MiSansArabic-Regular.min.css" />
+    <link rel="stylesheet" href="lib/Devanagari/MiSansDevanagari-Regular.min.css" />
+    <link rel="stylesheet" href="lib/Gurmukhi/MiSansGurmukhi-Regular.min.css" />
+    <link rel="stylesheet" href="lib/Khmer/MiSansKhmer-Regular.min.css" />
+    <link rel="stylesheet" href="lib/Lao/MiSansLao-Regular.min.css" />
+    <link rel="stylesheet" href="lib/Myanmar/MiSansMyanmar-Regular.min.css" />
+    <link rel="stylesheet" href="lib/Thai/MiSansThai-Regular.min.css" />
+    <link rel="stylesheet" href="lib/Tibetan/MiSansTibetan-Regular.min.css" />
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+    <style>
+      :root {
+        --paper: #ffffff;
+        --ink: #000000;
+        --ink-2: #6b6b6b;
+        --ink-3: #a3a3a3;
+        --line: #e8e8e8;
+        --wash: #f7f7f7;
+        --accent: #ff6900;
+        --font: 'MiSans VF', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+        --font-static: 'MiSans', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+        --mono: 'Cascadia Mono', 'Consolas', monospace;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --paper: #191919;
+          --ink: #f2f2f2;
+          --ink-2: #9d9d9d;
+          --ink-3: #6f6f6f;
+          --line: #333333;
+          --wash: #222222;
+        }
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--font);
+        font-size: 16px;
+        line-height: 1.75;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      ::selection {
+        background: var(--accent);
+        color: #fff;
+      }
+      code {
+        font-family: var(--mono);
+        font-size: 0.86em;
+        background: var(--wash);
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        padding: 0.1em 0.4em;
+      }
+      a {
+        color: inherit;
+      }
+
+      /* ---------- nav ---------- */
+      .site-nav {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 60px;
+        padding: 0 clamp(20px, 5vw, 56px);
+        background: color-mix(in srgb, var(--paper) 88%, transparent);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--line);
+      }
+      .site-nav .brand {
+        font-weight: 650;
+        font-size: 19px;
+        white-space: nowrap;
+        text-decoration: none;
+      }
+      .site-nav nav {
+        display: flex;
+        gap: 26px;
+        font-size: 14.5px;
+        font-weight: 350;
+        white-space: nowrap;
+      }
+      .site-nav nav a {
+        text-decoration: none;
+        color: var(--ink-2);
+        transition: color 0.15s;
+      }
+      .site-nav nav a:hover {
+        color: var(--accent);
+      }
+
+      /* ---------- layout ---------- */
+      section {
+        padding: clamp(40px, 6vw, 72px) clamp(20px, 5vw, 56px);
+        scroll-margin-top: 60px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      #vf,
+      #static {
+        padding-top: clamp(24px, 3.5vw, 40px);
+        padding-bottom: clamp(28px, 4vw, 48px);
+      }
+      #about {
+        padding-bottom: clamp(24px, 3.5vw, 40px);
+      }
+      section + section {
+        border-top: 1px solid var(--line);
+      }
+      .sec-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 10px 18px;
+        margin-bottom: 10px;
+      }
+      .sec-head h2 {
+        font-size: clamp(24px, 3vw, 32px);
+        font-weight: 650;
+        letter-spacing: 0.01em;
+      }
+      .sec-head .sec-meta {
+        font-size: 14px;
+        color: var(--ink-2);
+        font-weight: 350;
+      }
+      .sec-lede {
+        max-width: 44rem;
+        color: var(--ink-2);
+        font-weight: 350;
+        margin-bottom: 16px;
+      }
+
+      /* ---------- 项目信息 ---------- */
+      .hero {
+        padding-top: clamp(24px, 3.5vw, 44px);
+      }
+      .wordmark {
+        font-family: 'MiSans VF', var(--font);
+        font-size: clamp(56px, 9vw, 104px);
+        line-height: 1.1;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        margin-left: -0.03em;
+        margin-bottom: 22px;
+        user-select: none;
+      }
+      .js .wordmark {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+      .js.fonts-loaded .wordmark {
+        opacity: 1;
+      }
+      .lede {
+        max-width: 40rem;
+        font-size: 18px;
+        font-weight: 350;
+        margin-bottom: 30px;
+      }
+      .lede strong {
+        font-weight: 500;
+      }
+      .facts {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        border-top: 1px solid var(--ink);
+        border-bottom: 1px solid var(--line);
+        margin-bottom: 32px;
+      }
+      .facts > div {
+        padding: 12px 16px 12px 0;
+      }
+      .facts dt {
+        font-size: 13px;
+        font-weight: 350;
+        color: var(--ink-3);
+      }
+      .facts dd {
+        font-size: 19px;
+        font-weight: 500;
+        font-variant-numeric: tabular-nums;
+      }
+      .facts dd small {
+        font-size: 14px;
+        font-weight: 350;
+        color: var(--ink-2);
+      }
+      .usage {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+        gap: 16px;
+        margin-bottom: 32px;
+      }
+      .code-card {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .code-card .code-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 10px 8px 14px;
+        border-bottom: 1px solid var(--line);
+        font-size: 13px;
+        color: var(--ink-2);
+        font-weight: 350;
+      }
+      .code-card pre {
+        flex: 1;
+        padding: 12px;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        font-family: var(--mono);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+      .copy-btn {
+        font-family: var(--font);
+        font-size: 12.5px;
+        font-weight: 350;
+        color: var(--ink-2);
+        background: none;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 3px 10px;
+        cursor: pointer;
+        transition:
+          color 0.15s,
+          border-color 0.15s;
+      }
+      .copy-btn:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+      .families {
+        margin-bottom: 32px;
+      }
+      .families h3 {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 2px;
+      }
+      .families .fam-note {
+        font-size: 13px;
+        color: var(--ink-3);
+        font-weight: 350;
+        margin: 0 0 12px;
+      }
+      .families ul {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        border-top: 1px solid var(--line);
+        border-left: 1px solid var(--line);
+      }
+      .families li {
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 10px 14px;
+      }
+      .families .fam-name {
+        font-size: 21px;
+        font-weight: 400;
+        line-height: 1.5;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .families .fam-cap {
+        display: block;
+        font-size: 12.5px;
+        color: var(--ink-3);
+        font-weight: 350;
+        font-family: var(--mono);
+        margin-top: 2px;
+      }
+      .links-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 28px;
+        font-size: 14.5px;
+        font-weight: 400;
+      }
+      .links-row a {
+        text-decoration: none;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 1px;
+        transition:
+          border-color 0.15s,
+          color 0.15s;
+      }
+      .links-row a:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+
+      /* ---------- VF ---------- */
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 44px;
+        padding: 10px 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        margin-bottom: 16px;
+      }
+      .ctrl {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex: 1 1 280px;
+        min-width: 260px;
+      }
+      .ctrl label {
+        font-size: 13.5px;
+        font-weight: 350;
+        color: var(--ink-2);
+        white-space: nowrap;
+      }
+      .ctrl output {
+        font-family: var(--mono);
+        font-size: 13px;
+        min-width: 4.5ch;
+        color: var(--ink);
+        font-variant-numeric: tabular-nums;
+      }
+      .ctrl input[type='range'] {
+        -webkit-appearance: none;
+        appearance: none;
+        flex: 1;
+        height: 22px;
+        background: transparent;
+        cursor: pointer;
+      }
+      .ctrl input[type='range']::-webkit-slider-runnable-track {
+        height: 4px;
+        border-radius: 2px;
+        background: linear-gradient(
+          to right,
+          var(--accent) var(--fill, 50%),
+          var(--line) var(--fill, 50%)
+        );
+      }
+      .ctrl input[type='range']::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 14px;
+        height: 14px;
+        margin-top: -5px;
+        border-radius: 50%;
+        background: var(--paper);
+        border: 2px solid var(--accent);
+        box-shadow: 0 1px 4px rgb(0 0 0 / 0.18);
+        transition:
+          transform 0.12s ease,
+          background 0.12s ease;
+      }
+      .ctrl input[type='range']:hover::-webkit-slider-thumb {
+        transform: scale(1.15);
+      }
+      .ctrl input[type='range']:active::-webkit-slider-thumb {
+        background: var(--accent);
+        transform: scale(1.08);
+      }
+      .ctrl input[type='range']::-moz-range-track {
+        height: 4px;
+        border-radius: 2px;
+        background: var(--line);
+      }
+      .ctrl input[type='range']::-moz-range-progress {
+        height: 4px;
+        border-radius: 2px;
+        background: var(--accent);
+      }
+      .ctrl input[type='range']::-moz-range-thumb {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--paper);
+        border: 2px solid var(--accent);
+        box-shadow: 0 1px 4px rgb(0 0 0 / 0.18);
+      }
+      .vf-sample {
+        font-size: var(--vf-size, 48px);
+        font-weight: var(--vf-weight, 330);
+        line-height: 1.3;
+        overflow-wrap: break-word;
+        padding: 12px 0 16px;
+        outline: none;
+      }
+      .vf-sample:focus {
+        box-shadow: inset 0 0 0 2px var(--accent);
+        border-radius: 4px;
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+      .axis-walk {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 8px clamp(18px, 3.5vw, 44px);
+        margin: 28px 0 0;
+      }
+      .axis-walk figure {
+        text-align: center;
+      }
+      .axis-walk .glyph {
+        font-size: 48px;
+        line-height: 1.2;
+      }
+      .axis-walk figcaption {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--ink-3);
+      }
+
+      /* ---------- Static ---------- */
+      .sample-input-wrap {
+        margin-bottom: 8px;
+      }
+      .sample-input-wrap label {
+        display: block;
+        font-size: 13.5px;
+        color: var(--ink-2);
+        font-weight: 350;
+        margin-bottom: 6px;
+      }
+      #staticText {
+        width: 100%;
+        font-family: var(--font);
+        font-size: 16px;
+        padding: 10px 14px;
+        color: var(--ink);
+        background: var(--wash);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+      }
+      #staticText:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: -1px;
+      }
+      .specimen {
+        list-style: none;
+        margin-top: 14px;
+      }
+      .specimen li {
+        display: grid;
+        grid-template-columns: minmax(120px, 190px) 1fr;
+        gap: 10px 28px;
+        align-items: start;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .specimen .w-meta {
+        font-size: 13.5px;
+        color: var(--ink-2);
+        font-weight: 350;
+      }
+      .specimen .w-meta b {
+        display: block;
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--ink);
+      }
+      .specimen .w-meta code {
+        font-size: 11.5px;
+        background: none;
+        border: none;
+        padding: 0;
+      }
+      .specimen .w-sample {
+        font-family: var(--font-static);
+        font-size: clamp(22px, 3.4vw, 34px);
+        line-height: 1.45;
+        overflow-wrap: break-word;
+      }
+      .specimen-note {
+        font-size: 13px;
+        color: var(--ink-3);
+        font-weight: 350;
+        margin-top: 8px;
+      }
+
+      /* ---------- 长文预览 ---------- */
+      .longform {
+        margin-top: 32px;
+        border-top: 1px solid var(--ink);
+        padding-top: 24px;
+        font-family: var(--font-static);
+      }
+      .longform h3 {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 6px;
+      }
+      .longform .src {
+        font-size: 13px;
+        color: var(--ink-3);
+        font-weight: 350;
+        margin-bottom: 22px;
+      }
+      .longform .src a {
+        color: var(--ink-2);
+      }
+      .longform h4 {
+        font-size: 20px;
+        font-weight: 700;
+        margin: 24px 0 8px;
+      }
+      .longform p {
+        font-weight: 400;
+        margin-bottom: 14px;
+      }
+
+      /* ---------- footer ---------- */
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 24px clamp(20px, 5vw, 56px) 32px;
+        font-size: 13.5px;
+        color: var(--ink-3);
+        font-weight: 350;
+      }
+      footer .inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 32px;
+        justify-content: space-between;
+      }
+      footer a {
+        color: var(--ink-2);
+        text-decoration: none;
+      }
+      footer a:hover {
+        color: var(--accent);
+      }
+
+      @media (max-width: 640px) {
+        .site-nav {
+          flex-direction: column;
+          align-items: flex-start;
+          height: auto;
+          gap: 2px;
+          padding: 10px 16px;
+        }
+        .site-nav nav {
+          gap: 18px;
+        }
+        section {
+          scroll-margin-top: 76px;
+        }
+        .specimen li {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-nav">
+      <a class="brand" href="#top">MiSans Subsetted</a>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#vf">VF</a>
+        <a href="#static">Static</a>
+        <a href="https://github.com/dsrkafuu/misans" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" id="about">
+        <h1 class="wordmark" id="wordmark">MiSans</h1>
+        <p class="lede">
+          MiSans Global
+          是由小米主导，联合蒙纳字库、汉仪字库共同打造的全球语言字体定制项目。本仓库基于小米官方切片范围将其子集化为网页字体，输出仅含
+          WOFF2，提供 12 个语种家族、10 档静态字重与可变字体。
+        </p>
+        <dl class="facts">
+          <div>
+            <dt>字体版本</dt>
+            <dd>4.009</dd>
+          </div>
+          <div>
+            <dt>npm 包版本</dt>
+            <dd>5.0.0</dd>
+          </div>
+          <div>
+            <dt>语种家族</dt>
+            <dd>12</dd>
+          </div>
+          <div>
+            <dt>静态字重</dt>
+            <dd>10 <small>+ VF</small></dd>
+          </div>
+          <div>
+            <dt>官方切片</dt>
+            <dd>SC 56 <small>/ TC 64</small></dd>
+          </div>
+          <div>
+            <dt>输出格式</dt>
+            <dd>WOFF2</dd>
+          </div>
+        </dl>
+        <div class="usage">
+          <div class="code-card">
+            <div class="code-bar">
+              <span>可变字体</span><button class="copy-btn" type="button">复制</button>
+            </div>
+            <pre>
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@5.0.0/lib/Normal/MiSansVF.min.css" /&gt;
+
+body {
+  font-family: 'MiSans VF', sans-serif;
+  font-weight: 450; /* 150 – 700 */
+}</pre>
+          </div>
+          <div class="code-card">
+            <div class="code-bar">
+              <span>静态字体</span><button class="copy-btn" type="button">复制</button>
+            </div>
+            <pre>
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/misans@5.0.0/lib/Normal/MiSans-Medium.min.css" /&gt;
+
+body {
+  font-family: 'MiSans', sans-serif;
+}</pre>
+          </div>
+        </div>
+        <div class="families">
+          <h3>全部家族</h3>
+          <p class="fam-note">以下家族名各以自身字体渲染</p>
+          <ul>
+            <li>
+              <span class="fam-name" style="font-family: 'MiSans', var(--font)" lang="zh-Hans"
+                >简体中文</span
+              >
+              <span class="fam-cap">MiSans</span>
+            </li>
+            <li>
+              <span class="fam-name" style="font-family: 'MiSansTC', var(--font)" lang="zh-Hant"
+                >繁體中文</span
+              >
+              <span class="fam-cap">MiSansTC</span>
+            </li>
+            <li>
+              <span class="fam-name" style="font-family: 'MiSansLatin', var(--font)"
+                >Latin Aa Gg</span
+              >
+              <span class="fam-cap">MiSansLatin</span>
+            </li>
+            <li>
+              <span class="fam-name" style="font-family: 'MiSansArabic', var(--font)" lang="ar"
+                >العربية</span
+              >
+              <span class="fam-cap">MiSansArabic</span>
+            </li>
+            <li>
+              <span class="fam-name" style="font-family: 'MiSansArabicUI', var(--font)" lang="ar"
+                >واجهة</span
+              >
+              <span class="fam-cap">MiSansArabicUI</span>
+            </li>
+            <li>
+              <span class="fam-name" style="font-family: 'MiSansDevanagari', var(--font)" lang="hi"
+                >देवनागरी</span
+              >
+              <span class="fam-cap">MiSansDevanagari</span>
+            </li>
+            <li>
+              <span class="fam-name" style="font-family: 'MiSansGurmukhi', var(--font)" lang="pa"
+                >ਗੁਰਮੁਖੀ</span
+              >
+              <span class="fam-cap">MiSansGurmukhi</span>
+            </li>
+            <li>
+              <span class="fam-name" style="font-family: 'MiSansKhmer', var(--font)" lang="km"
+                >ខ្មែរ</span
+              >
+              <span class="fam-cap">MiSansKhmer</span>
+            </li>
+            <li>
+              <span class="fam-name" style="font-family: 'MiSansLao', var(--font)" lang="lo"
+                >ລາວ</span
+              >
+              <span class="fam-cap">MiSansLao</span>
+            </li>
+            <li>
+              <span class="fam-name" style="font-family: 'MiSansMyanmar', var(--font)" lang="my"
+                >မြန်မာ</span
+              >
+              <span class="fam-cap">MiSansMyanmar</span>
+            </li>
+            <li>
+              <span class="fam-name" style="font-family: 'MiSansThai', var(--font)" lang="th"
+                >ไทย</span
+              >
+              <span class="fam-cap">MiSansThai</span>
+            </li>
+            <li>
+              <span class="fam-name" style="font-family: 'MiSansTibetan', var(--font)" lang="bo"
+                >བོད་ཡིག</span
+              >
+              <span class="fam-cap">MiSansTibetan</span>
+            </li>
+          </ul>
+        </div>
+        <div class="links-row">
+          <a href="https://github.com/dsrkafuu/misans" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.npmjs.com/package/misans" target="_blank" rel="noopener">npm</a>
+          <a href="https://www.jsdelivr.com/package/npm/misans" target="_blank" rel="noopener"
+            >jsDelivr</a
+          >
+          <a href="https://hyperos.mi.com/font/zh/" target="_blank" rel="noopener"
+            >HyperOS 字体官网</a
+          >
+          <a href="https://github.com/dsrkafuu/misans#readme" target="_blank" rel="noopener"
+            >使用文档</a
+          >
+        </div>
+      </section>
+
+      <section id="vf">
+        <div class="sec-head">
+          <h2>可变字体</h2>
+          <span class="sec-meta">family <code>'MiSans VF'</code> · wght 150 – 700（默认 330）</span>
+        </div>
+        <p class="sec-lede">
+          拖动滑块在 wght 轴上取值，任何中间字重都是完整轮廓。下方文字可直接点击编辑。
+        </p>
+        <div class="controls">
+          <div class="ctrl">
+            <label for="vfWeight">font-weight</label>
+            <input type="range" id="vfWeight" min="150" max="700" step="1" value="330" />
+            <output id="vfWeightOut">330</output>
+          </div>
+          <div class="ctrl">
+            <label for="vfSize">font-size</label>
+            <input type="range" id="vfSize" min="24" max="96" step="1" value="48" />
+            <output id="vfSizeOut">48px</output>
+          </div>
+        </div>
+        <div class="vf-sample" id="vfSample" contenteditable="true" spellcheck="false">
+          人人生而自由，在尊严和权利上一律平等。<br />The quick brown fox jumps over the lazy dog.
+          0123456789
+        </div>
+      </section>
+
+      <section id="static">
+        <div class="sec-head">
+          <h2>静态字重</h2>
+          <span class="sec-meta">family <code>'MiSans'</code> · 10 档 · CSS 采用标准刻度</span>
+        </div>
+        <p class="sec-lede">每档字重一份独立 CSS，按需加载，修改样句可实时预览所有字重。</p>
+        <div class="sample-input-wrap">
+          <label for="staticText">样句</label>
+          <input
+            type="text"
+            id="staticText"
+            value="人人生而自由，在尊严和权利上一律平等。The quick brown fox jumps over the lazy dog. 0123456789"
+            spellcheck="false"
+          />
+        </div>
+        <ul class="specimen" id="specimen">
+          <li>
+            <span class="w-meta"><b>Thin</b><code>font-weight: 100</code></span>
+            <span class="w-sample" style="font-weight: 100">人人生而自由</span>
+          </li>
+          <li>
+            <span class="w-meta"><b>ExtraLight</b><code>font-weight: 200</code></span>
+            <span class="w-sample" style="font-weight: 200">人人生而自由</span>
+          </li>
+          <li>
+            <span class="w-meta"><b>Light</b><code>font-weight: 300</code></span>
+            <span class="w-sample" style="font-weight: 300">人人生而自由</span>
+          </li>
+          <li>
+            <span class="w-meta"><b>Normal</b><code>font-weight: 350</code></span>
+            <span class="w-sample" style="font-weight: 350">人人生而自由</span>
+          </li>
+          <li>
+            <span class="w-meta"><b>Regular</b><code>font-weight: 400</code></span>
+            <span class="w-sample" style="font-weight: 400">人人生而自由</span>
+          </li>
+          <li>
+            <span class="w-meta"><b>Medium</b><code>font-weight: 500</code></span>
+            <span class="w-sample" style="font-weight: 500">人人生而自由</span>
+          </li>
+          <li>
+            <span class="w-meta"><b>Demibold</b><code>font-weight: 600</code></span>
+            <span class="w-sample" style="font-weight: 600">人人生而自由</span>
+          </li>
+          <li>
+            <span class="w-meta"><b>Semibold</b><code>font-weight: 650</code></span>
+            <span class="w-sample" style="font-weight: 650">人人生而自由</span>
+          </li>
+          <li>
+            <span class="w-meta"><b>Bold</b><code>font-weight: 700</code></span>
+            <span class="w-sample" style="font-weight: 700">人人生而自由</span>
+          </li>
+          <li>
+            <span class="w-meta"><b>Heavy</b><code>font-weight: 900</code></span>
+            <span class="w-sample" style="font-weight: 900">人人生而自由</span>
+          </li>
+        </ul>
+        <p class="specimen-note">
+          字体文件内部的 usWeightClass 与 VF wght
+          轴遵循内部刻度（150–700），与上表标准刻度不同，详见 README。
+        </p>
+        <div class="axis-walk">
+          <figure>
+            <div class="glyph" style="font-weight: 150">永</div>
+            <figcaption>150</figcaption>
+          </figure>
+          <figure>
+            <div class="glyph" style="font-weight: 250">永</div>
+            <figcaption>250</figcaption>
+          </figure>
+          <figure>
+            <div class="glyph" style="font-weight: 330">永</div>
+            <figcaption>330</figcaption>
+          </figure>
+          <figure>
+            <div class="glyph" style="font-weight: 450">永</div>
+            <figcaption>450</figcaption>
+          </figure>
+          <figure>
+            <div class="glyph" style="font-weight: 580">永</div>
+            <figcaption>580</figcaption>
+          </figure>
+          <figure>
+            <div class="glyph" style="font-weight: 700">永</div>
+            <figcaption>700</figcaption>
+          </figure>
+        </div>
+        <div class="longform">
+          <h3>长文预览</h3>
+          <p class="src">
+            以下内容引用自
+            <a
+              href="https://www.un.org/zh/about-us/universal-declaration-of-human-rights"
+              target="_blank"
+              rel="noopener"
+              >联合国官方网站</a
+            >：《世界人权宣言》，用于 MiSans Web 字体的长文渲染演示。
+          </p>
+          <h4>世界人权宣言</h4>
+          <p>
+            　　鉴于对人类家庭所有成员的固有尊严及其平等的和不移的权利的承认，乃是世界自由、正义与和平的基础，鉴于对人权的无视和侮蔑已发展为野蛮暴行，这些暴行玷污了人类的良心，而一个人人享有言论和信仰自由并免予恐惧和匮乏的世界的来临，已被宣布为普通人民的最高愿望，鉴于为使人类不致迫不得已铤而走险对暴政和压迫进行反叛，有必要使人权受法治的保护，因此现在，大会，发布这一世界人权宣言，作为所有人民和所有国家努力实现的共同标准，以期每一个人和社会机构经常铭念本宣言，努力通过教诲和教育促进对权利和自由的尊重，并通过国家的和国际的渐进措施，使这些权利和自由在各会员国本身人民及在其管辖下领土的人民中得到普遍和有效的承认和遵行。
+          </p>
+          <h4>第一条</h4>
+          <p>
+            　　人人生而自由，在尊严和权利上一律平等。他们赋有理性和良心，并应以兄弟关系的精神相对待。
+          </p>
+          <h4>第二条</h4>
+          <p>
+            　　人人有资格享有本宣言所载的一切权利和自由，不分种族、肤色、性别、语言、宗教、政治或其他见解、国籍或社会出身、财产、出生或其他身分等任何区别。并且不得因一人所属的国家或领土的政治的、行政的或者国际的地位之不同而有所区别，无论该领土是独立领土、托管领土、非自治领土或者处于其他任何主权受限制的情况之下。
+          </p>
+          <h4>第三条</h4>
+          <p>　　人人有权享有生命、自由和人身安全。</p>
+          <h4>第四条</h4>
+          <p>　　任何人不得使为奴隶或奴役；一切形式的奴隶制度和奴隶买卖，均应予以禁止。</p>
+          <h4>第五条</h4>
+          <p>　　任何人不得加以酷刑，或施以残忍的、不人道的或侮辱性的待遇或刑罚。</p>
+          <h4>第六条</h4>
+          <p>　　人人在任何地方有权被承认在法律前的人格。</p>
+          <h4>第七条</h4>
+          <p>
+            　　法律之前人人平等，并有权享受法律的平等保护，不受任何歧视。人人有权享受平等保护，以免受违反本宣言的任何歧视行为以及煽动这种歧视的任何行为之害。
+          </p>
+          <h4>第八条</h4>
+          <p>
+            　　任何人当宪法或法律所赋予他的基本权利遭受侵害时，有权由合格的国家法庭对这种侵害行为作有效的补救。
+          </p>
+          <h4>第九条</h4>
+          <p>　　任何人不得加以任意逮捕、拘禁或放逐。</p>
+          <h4>第十条</h4>
+          <p>
+            　　人人完全平等地有权由一个独立而无偏倚的法庭进行公正的和公开的审讯，以确定他的权利和义务并判定对他提出的任何刑事指控。
+          </p>
+          <h4>第十一条</h4>
+          <p>
+            　　㈠
+            凡受刑事控告者，在未经获得辩护上所需的一切保证的公开审判而依法证实有罪以前，有权被视为无罪。㈡
+            任何人的任何行为或不行为，在其发生时依国家法或国际法均不构成刑事罪者，不得被判为犯有刑事罪。刑罚不得重于犯罪时适用的法律规定。
+          </p>
+          <h4>第十二条</h4>
+          <p>
+            　　任何人的私生活、家庭、住宅和通信不得任意干涉，他的荣誉和名誉不得加以攻击。人人有权享受法律保护，以免受这种干涉或攻击。
+          </p>
+          <h4>第十三条</h4>
+          <p>
+            　　㈠ 人人在各国境内有权自由迁徙和居住。㈡
+            人人有权离开任何国家，包括其本国在内，并有权返回他的国家。
+          </p>
+          <h4>第十四条</h4>
+          <p>
+            　　㈠ 人人在其他国家寻求和享受庇护以避免迫害。㈡
+            在真正由于非政治性的罪行或违背联合国的宗旨和原则的行为而被起诉的情况下，不得援用此种权利。
+          </p>
+          <h4>第十五条</h4>
+          <p>　　㈠ 人人有权享有国籍。㈡ 任何人的国籍不得任意剥夺，亦不得否认其改变国籍的权利。</p>
+          <h4>第十六条</h4>
+          <p>
+            　　㈠
+            成年男女，不受种族、国籍或宗教的任何限制有权婚嫁和成立家庭。他们在婚姻方面，在结婚期间和在解除婚约时，应有平等的权利。㈡
+            只有经男女双方的自由和完全的同意，才能缔婚。㈢
+            家庭是天然的和基本的社会单元，并应受社会和国家的保护。
+          </p>
+          <h4>第十七条</h4>
+          <p>
+            　　㈠ 人人得有单独的财产所有权以及同他人合有的所有权。㈡ 任何人的财产不得任意剥夺。
+          </p>
+          <h4>第十八条</h4>
+          <p>
+            　　人人有思想、良心和宗教自由的权利；此项权利包括改变他的宗教或信仰的自由，以及单独或集体、公开或秘密地以教义、实践、礼拜和戒律表示他的宗教或信仰的自由。
+          </p>
+          <h4>第十九条</h4>
+          <p>
+            　　人人有权享有主张和发表意见的自由；此项权利包括持有主张而不受干涉的自由，和通过任何媒介和不论国界寻求、接受和传递消息和思想的自由。
+          </p>
+          <h4>第二十条</h4>
+          <p>　　㈠ 人人有权享有和平集会和结社的自由。㈡ 任何人不得迫使隶属于某一团体。</p>
+          <h4>第二十一条</h4>
+          <p>
+            　　㈠ 人人有直接或通过自由选择的代表参与治理本国的权利。㈡
+            人人有平等机会参加本国公务的权利。㈢
+            人民的意志是政府权力的基础；这一意志应以定期的和真正的选举予以表现，而选举应依据普遍和平等的投票权，并以不记名投票或相当的自由投票程序进行。
+          </p>
+          <h4>第二十二条</h4>
+          <p>
+            　　每个人，作为社会的一员，有权享受社会保障，并有权享受他的个人尊严和人格的自由发展所必需的经济、社会和文化方面各种权利的实现，这种实现是通过国家努力和国际合作并依照各国的组织和资源情况。
+          </p>
+          <h4>第二十三条</h4>
+          <p>
+            　　㈠ 人人有权工作、自由选择职业、享受公正和合适的工作条件并享受免于失业的保障。㈡
+            人人有同工同酬的权利，不受任何歧视。㈢
+            每一个工作的人，有权享受公正和合适的报酬，保证使他本人和家属有一个符合人的尊严的生活条件，必要时并辅以其他方式的社会保障。㈣
+            人人有为维护其利益而组织和参加工会的权利。
+          </p>
+          <h4>第二十四条</h4>
+          <p>　　人人有享有休息和闲暇的权利，包括工作时间有合理限制和定期给薪休假的权利。</p>
+          <h4>第二十五条</h4>
+          <p>
+            　　㈠
+            人人有权享受为维持他本人和家属的健康和福利所需的生活水准，包括食物、衣着、住房、医疗和必要的社会服务；在遭到失业、疾病、残废、守寡、衰老或在其他不能控制的情况下丧失谋生能力时，有权享受保障。㈡
+            母亲和儿童有权享受特别照顾和协助。一切儿童，无论婚生或非婚生，都应享受同样的社会保护。
+          </p>
+          <h4>第二十六条</h4>
+          <p>
+            　　㈠
+            人人都有受教育的权利，教育应当免费，至少在初级和基本阶段应如此。初级教育应属义务性质。技术和职业教育应普遍设立。高等教育应根据成绩而对一切人平等开放。㈡
+            教育的目的在于充分发展人的个性并加强对人权和基本自由的尊重。教育应促进各国、各种族或各宗教集团间的了解、容忍和友谊，并应促进联合国维护和平的各项活动。㈢
+            父母对其子女所应受的教育的种类，有优先选择的权利。
+          </p>
+          <h4>第二十七条</h4>
+          <p>
+            　　㈠ 人人有权自由参加社会的文化生活，享受艺术，并分享科学进步及其产生的福利。㈡
+            人人对由于他所创作的任何科学、文学或美术作品而产生的精神的和物质的利益，有享受保护的权利。
+          </p>
+          <h4>第二十八条</h4>
+          <p>
+            　　人人有权要求一种社会的和国际的秩序，在这种秩序中，本宣言所载的权利和自由能获得充分实现。
+          </p>
+          <h4>第二十九条</h4>
+          <p>
+            　　㈠ 人人对社会负有义务，因为只有在社会中他的个性才可能得到自由和充分的发展。㈡
+            人人在行使他的权利和自由时，只受法律所确定的限制，确定此种限制的唯一目的在于保证对旁人的权利和自由给予应有的承认和尊重，并在一个民主的社会中适应道德、公共秩序和普遍福利的正当需要。㈢
+            这些权利和自由的行使，无论在任何情形下均不得违背联合国的宗旨和原则。
+          </p>
+          <h4>第三十条</h4>
+          <p>
+            　　本宣言的任何条文，不得解释为默许任何国家、集团或个人有权进行任何旨在破坏本宣言所载的任何权利和自由的活动或行为。
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="inner">
+        <span
+          >MiSans 字体版权归小米所有，遵循《MiSans 字体知识产权许可协议》；仓库脚本以 Apache-2.0
+          发布。</span
+        >
+        <span
+          ><a href="https://github.com/dsrkafuu/misans" target="_blank" rel="noopener"
+            >dsrkafuu/misans</a
+          ></span
+        >
+      </div>
+    </footer>
+
+    <script>
+      // ---- font loaded reveal ----
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => document.documentElement.classList.add('fonts-loaded'));
+      } else {
+        document.documentElement.classList.add('fonts-loaded');
+      }
+
+      // ---- copy buttons ----
+      document.querySelectorAll('.copy-btn').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const code = btn.closest('.code-card').querySelector('pre').textContent;
+          try {
+            await navigator.clipboard.writeText(code);
+          } catch {
+            const ta = document.createElement('textarea');
+            ta.value = code;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            ta.remove();
+          }
+          btn.textContent = '已复制';
+          setTimeout(() => (btn.textContent = '复制'), 1500);
+        });
+      });
+
+      // ---- VF sliders ----
+      const vfSample = document.getElementById('vfSample');
+      const vfWeight = document.getElementById('vfWeight');
+      const vfSize = document.getElementById('vfSize');
+      function setFill(input) {
+        const p = ((input.value - input.min) / (input.max - input.min)) * 100;
+        input.style.setProperty('--fill', p + '%');
+      }
+      function applyVf() {
+        vfSample.style.fontWeight = vfWeight.value;
+        vfSample.style.fontSize = vfSize.value + 'px';
+        setFill(vfWeight);
+        setFill(vfSize);
+        document.getElementById('vfWeightOut').textContent = vfWeight.value;
+        document.getElementById('vfSizeOut').textContent = vfSize.value + 'px';
+      }
+      vfWeight.addEventListener('input', applyVf);
+      vfSize.addEventListener('input', applyVf);
+      applyVf();
+
+      // ---- static sample input ----
+      const staticText = document.getElementById('staticText');
+      const samples = document.querySelectorAll('#specimen .w-sample');
+      staticText.addEventListener('input', () => {
+        samples.forEach((el) => (el.textContent = staticText.value || '人人生而自由'));
+      });
+    </script>
+  </body>
+</html>

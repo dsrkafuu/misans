@@ -1,5 +1,6 @@
-import fs from 'fs';
 /*! DSRKafuU (https://dsrkafuu.net) | Copyright (c) Apache License 2.0 */
+
+import fs from 'fs';
 import path from 'path';
 
 import {
@@ -17,25 +18,18 @@ const FACE_RE =
 
 let failures = 0;
 
-/**
- * @param {string} message
- */
+/** report a check failure */
 function fail(message) {
   failures++;
   console.error(`  ✗ ${message}`);
 }
 
-/**
- * @param {string} message
- */
+/** log an informational line */
 function info(message) {
   console.log(`  · ${message}`);
 }
 
-/**
- * parse one generated min.css file
- * @param {string} file
- */
+/** parse one generated min.css file */
 function parseCss(file) {
   const faces = [];
   const text = fs.readFileSync(file, 'utf-8');
